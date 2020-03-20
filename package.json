@@ -1,0 +1,46 @@
+{
+  "name": "CODIV-19-REPORT-API",
+  "version": "1.0.0",
+  "description": "CODIV-19-REPORT-API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "compile": "babel server --out-dir dist --delete-dir-on-start --source-maps inline --copy-files",
+    "dev": "nodemon server --exec babel-node --config .nodemonrc.json | pino-pretty",
+    "dev:debug": "nodemon server --exec babel-node --config .nodemonrc.json --inspect | pino-pretty",
+    "test": "mocha --require @babel/register --exit",
+    "test:debug": "mocha --require @babel/register --inspect-brk --exit",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pino": "^5.16.0",
+    "express-openapi-validator": "^3.9.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "mocha": "^7.0.1",
+    "nodemon": "^2.0.2",
+    "pino-pretty": "^3.5.0",
+    "supertest": "^4.0.2"
+  },
+  "author": "Carmine DiMascio <cdimascio@gmail.com> (https://github.com/cdimascio)"
+}
