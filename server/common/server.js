@@ -37,7 +37,7 @@ export default class ExpressServer {
     const welcome = p => () =>
       l.info(
         `up and running in ${process.env.NODE_ENV ||
-          'development'} @: ${os.hostname()} on port: ${p}}`
+        'development'} @: ${os.hostname()} on port: ${p}}`
       );
 
     oas(app, this.routes)

@@ -55,9 +55,9 @@ class CasesDatabase {
       this.setData(result);
       this._lastUpdate = new Date().toISOString();
 
-      return Promise.resolve(true);
+      return Promise.resolve('SelfUpdate is done!');
     } catch (error) {
-      return Promise.resolve(false);
+      return Promise.resolve('SelfUpdate cannot be done!');
     }
   }
 }

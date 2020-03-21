@@ -22,10 +22,22 @@ export class Controller {
     CasesService.timeseries(iso, onlyCountries).then(r => res.json(r));
   }
 
-  byId(req, res) {
-    CasesService.byId(req.params.id).then(r => {
+
+  selfUpdate(req, res) {
+    const { secret } = req.query;
+    if (!secret) return res.status(401).json({ message: 'parameter is missing' }).end();
+    CasesService.selfUpdate(secret).then(r => {
       if (r) res.json(r);
       else res.status(404).end();
+    });
+  }
+
+
+  byId(req, res) {
+    CasesService.byId(req.params.id).then(result => {
+      if (result) res.json({ message: result }).end();
+    }, err => {
+      res.status(404).json({ message: err }).end();
     });
   }
 

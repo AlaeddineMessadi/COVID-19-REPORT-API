@@ -2,14 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server/index.js",
+      "src": "build/index.js",
       "use": "@now/node-server"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "build/index.js"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "PORT": "3000",
+      "LOG_LEVEL": "debug",
+      "REQUEST_LIMIT": "100kb"
+    }
+  }
 }
