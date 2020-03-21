@@ -5,4 +5,5 @@ export default express
   .Router()
   .get('/', controller.all)
   .get('/brief', controller.brief)
+  .get('/latest', controller.latest)
   .get('/:id', controller.byId);

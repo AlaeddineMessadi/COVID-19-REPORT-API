@@ -83,3 +83,10 @@ export const storeData = (path, data) => {
     console.error(err)
   }
 }
+
+export const dataSetFilter = (iso2, iso3, timeseries) => {
+  let result;
+  if (iso2) timeseries = filterIso2code(timeseries, iso2)
+  if (iso3) timeseries = filterIso3code(timeseries, iso3)
+  return result;
+}

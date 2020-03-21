@@ -13,6 +13,16 @@ class CasesService {
     return db.brief();
   }
 
+  latest(iso2, iso3, onlyCountries) {
+    l.info(`${this.constructor.name}.latest()`);
+    return db.latest(iso2, iso3, onlyCountries);
+  }
+
+  timeseries(iso2, iso3, onlyCountries) {
+    l.info(`${this.constructor.name}.timeseries()`);
+    return db.timeseries(iso2, iso3, onlyCountries);
+  }
+
   byId(id) {
     l.info(`${this.constructor.name}.byId(${id})`);
     return db.byId(id);

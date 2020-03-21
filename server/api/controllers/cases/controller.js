@@ -9,6 +9,13 @@ export class Controller {
     CasesService.brief().then(r => res.json(r));
   }
 
+  latest(req, res) {
+    const { iso2, iso3, onlyCountries } = req.query;
+
+    CasesService.latest(iso2, iso3, onlyCountries).then(r => res.json(r));
+  }
+
+
   byId(req, res) {
     CasesService.byId(req.params.id).then(r => {
       if (r) res.json(r);
