@@ -1,6 +1,6 @@
-# CODIV-19-REPORT-API
+# COVID-19-REPORT-API
 
-CODIV-19-REPORT-API
+COVID-19-REPORT-API
 
 ## Get Started
 
@@ -106,7 +106,7 @@ npm run lint
 Deploy to CloudFoundry
 
 ```shell
-cf push CODIV-19-REPORT-API
+cf push COVID-19-REPORT-API
 ```
 
 

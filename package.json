@@ -1,7 +1,7 @@
 {
-  "name": "CODIV-19-REPORT-API",
+  "name": "COVID-19-REPORT-API",
   "version": "1.0.0",
-  "description": "CODIV-19-REPORT-API",
+  "description": "COVID-19-REPORT-API",
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
