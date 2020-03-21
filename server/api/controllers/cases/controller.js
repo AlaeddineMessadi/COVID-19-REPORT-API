@@ -27,7 +27,7 @@ export class Controller {
     const { secret } = req.query;
     if (!secret) return res.status(401).json({ message: 'parameter is missing' }).end();
     CasesService.selfUpdate(secret).then(
-      r => res.status(404).end(),
+      result => res.json({ message: result }).end(),
       err => res.status(404).json({ message: err }).end()
     );
   }
