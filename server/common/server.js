@@ -5,8 +5,6 @@ import * as http from 'http';
 import * as os from 'os';
 import cookieParser from 'cookie-parser';
 
-import oas from './oas';
-
 import l from './logger';
 
 const app = new Express();

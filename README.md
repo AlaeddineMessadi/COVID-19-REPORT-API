@@ -1,42 +1,36 @@
 # COVID-19-REPORT-API
 
-COVID-19-REPORT-API
+COVID-19-REPORT-API is an API Service to keep tracking  COVID-19 cases worldwide
 
 ## Get Started
 
-Get started developing...
+### Prerequisites
+ [npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/en/docs/install) installed
 
 ```shell
-# install deps
-npm install
+# clone the repo
+$ git clone git@github.com:AlaeddineMessadi/COVID-19-REPORT-API.git
+
+# install dependencies
+$ yarn    ## or npm install
 
 # run in development mode
-npm run dev
+$ yarn dev   ## npm run dev
 
 # run tests
-npm run test
+$ yarn test  ## npm run test
 ```
 
-## Install Dependencies
 
-Install all package dependencies (one time operation)
 
-```shell
-npm install
-```
-
-## Run It
+## Run the service
 #### Run in *development* mode:
 Runs the application is development mode. Should not be used in production
 
 ```shell
-npm run dev
-```
-
-or debug it
-
-```shell
-npm run dev:debug
+$ yarn dev
+## or with debug
+$ yarn dev:debug
 ```
 
 #### Run in *production* mode:
@@ -44,70 +38,84 @@ npm run dev:debug
 Compiles the application and starts it in production production mode.
 
 ```shell
-npm run compile
-npm start
+$yarn compile
+$ yarn start
+```
+
+## Documentation
+
+
+
+```makefile
+# Get me a brief report
+[GET]   /api/v1/cases/brief
+
+# Get me all latest cases in the world or in specific region or country
+[GET]   /api/v1/cases/latest   # queries {iso: String , onlyCountries: Boolean}
+
+#! iso parameter can be iso2 or iso3 for example: US or USA , CN or CHN
+
+exemples:
+[GET]   /api/v1/cases/latest
+[GET]   /api/v1/cases/latest?onlyCounties=true
+[GET]   /api/v1/cases/latest?iso=US
+[GET]   /api/v1/cases/latest?iso=US&onlyCounties=true
+
+# Get me al timeseries in the world or in specific region or country
+[GET]   /api/v1/cases/timeseries   # queries {iso: String , onlyCountries: Boolean}
+
+exemples:
+[GET]   /api/v1/cases/timeseries
+[GET]   /api/v1/cases/timeseries?onlyCounties=false
+[GET]   /api/v1/cases/timeseries?iso=DE
+[GET]   /api/v1/cases/latest?iso=CH&onlyCounties=true
+
+# Secret endpoint to update Database
+[GET]   /api/v1/cases/udpate?secret=secret
+
+#! change your secret in the .env file
+
+
+# Get ALL 
+[GET]   /api/v1/cases
+
+#! response will be huge!! 
 ```
 
 ## Test It
 
-Run the Mocha unit tests
+Run the Mocha unit tests  **TO DO: ** more tests to implement
 
 ```shell
-npm test
-```
-
-or debug them
-
-```shell
-npm run test:debug
+$ yarn test
+## or
+$ yarn test:debug
 ```
 
 ## Try It
 * Open you're browser to [http://localhost:3000](http://localhost:3000)
-* Invoke the `/examples` endpoint 
+* Invoke the `/cases` endpoint 
   ```shell
-  curl http://localhost:3000/api/v1/examples
+  curl http://localhost:3000/api/v1/cases/brief
   ```
 
-
-## Debug It
-
-#### Debug the server:
-
-```
-npm run dev:debug
-```
-
-#### Debug Tests
-
-```
-npm run test:debug
-```
-
-#### Debug with VSCode
-
-Add these [contents](https://github.com/cdimascio/generator-express-no-stress/blob/next/assets/.vscode/launch.json) to your `.vscode/launch.json` file
 ## Lint It
-
-View prettier linter output
-
-```
-npm run lint
-```
 
 Fix all prettier linter errors
 
-```
-npm run lint
+```shell
+$ yarn lint
 ```
 
-## Deploy It
-
-Deploy to CloudFoundry
+## Deployment
 
 ```shell
-cf push COVID-19-REPORT-API
+$ now
 ```
 
 
-   
+
+### MIT License
+
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://amessadi.com)
+
