@@ -6,7 +6,7 @@ export class Controller {
   }
 
   brief(req, res) {
-    CasesService.all().then(r => res.json(r));
+    CasesService.brief().then(r => res.json(r));
   }
 
   byId(req, res) {

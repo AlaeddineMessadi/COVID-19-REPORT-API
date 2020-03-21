@@ -9,8 +9,8 @@ class CasesService {
   }
 
   brief() {
-    l.info(`${this.constructor.name}.all()`);
-    return db.all();
+    l.info(`${this.constructor.name}.brief()`);
+    return db.brief();
   }
 
   byId(id) {

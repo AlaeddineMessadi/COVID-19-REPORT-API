@@ -22,15 +22,19 @@ class CasesDatabase {
     return Promise.resolve(this._data.brief);
   }
 
+  latest() {
+    return Promise.resolve(this._data.latest);
+  }
+
   byId(id) {
     return Promise.resolve(this._data[id]);
   }
 
   async selfUpdate() {
-    console.log('selft upadte!')
+    console.log('self UPDATE!')
 
     try {
-      const result = parseCsvAll();
+      const result = await parseCsvAll();
       this.setData(result);
       this._lastUpdate = new Date().toISOString();
 
