@@ -5,7 +5,7 @@ import Server from '../server';
 const expect = chai.expect;
 
 describe('Examples', () => {
-  it('should get all examples', () =>
+  it('should get would work', () =>
     request(Server)
       .get('/api/v1/cases')
       .expect('Content-Type', /json/)
@@ -15,9 +15,9 @@ describe('Examples', () => {
           .of.length(2);
       }));
 
-  it('should add a new example', () =>
+  it('should get a brief', () =>
     request(Server)
-      .post('/api/v1/cases')
+      .post('/api/v1/cases/brief')
       .send({ name: 'test' })
       .expect('Content-Type', /json/)
       .then(r => {
@@ -27,9 +27,9 @@ describe('Examples', () => {
           .equal('test');
       }));
 
-  it('should get an example by id', () =>
+  it('should get latest cases', () =>
     request(Server)
-      .get('/api/v1/cases/2')
+      .get('/api/v1/cases/latest')
       .expect('Content-Type', /json/)
       .then(r => {
         expect(r.body)
