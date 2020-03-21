@@ -1,6 +1,6 @@
 
 import { parseCsvAll } from "../../utils/csvTools";
-import { filterIso2code, filterIso3code, dataSetFilter } from "../../utils/helpers";
+import { filterByCode } from "../../utils/helpers";
 
 class CasesDatabase {
   constructor(data) {
@@ -23,19 +23,19 @@ class CasesDatabase {
     return Promise.resolve(this._data.brief);
   }
 
-  latest(iso2, iso3, onlyCountries) {
+  latest(iso, onlyCountries) {
     let latest = onlyCountries ? this._data.latestOnlyCountries : this._data.latest
 
-    if (iso2) latest = filterIso2code(latest, iso2)
-    if (iso3) latest = filterIso3code(latest, iso3)
+    if (iso) latest = filterByCode(latest, iso)
 
     return Promise.resolve({ count: latest.length, data: latest });
   }
 
-  timeseries(iso2, iso3, onlyCountries) {
+  timeseries(iso, onlyCountries) {
     let timeseries = onlyCountries ? this._data.timeseriesOnlyCountries : this._data.timeseries;
 
-    const result = dataSetFilter(iso2, iso2, timeseries);
+    if (iso) latest = filterByCode(timeseries, iso)
+
     return Promise.resolve(result);
   }
 

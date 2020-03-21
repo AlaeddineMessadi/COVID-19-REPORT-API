@@ -10,9 +10,9 @@ export class Controller {
   }
 
   latest(req, res) {
-    const { iso2, iso3, onlyCountries } = req.query;
+    const { iso, onlyCountries } = req.query;
 
-    CasesService.latest(iso2, iso3, onlyCountries).then(r => res.json(r));
+    CasesService.latest(iso, onlyCountries).then(r => res.json(r));
   }
 
 

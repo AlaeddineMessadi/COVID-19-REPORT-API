@@ -52,19 +52,17 @@ export const merge = (target, item, key) => {
   target[key] = cur + add
 }
 
-export const filterIso2code = (source, code) => {
+export const filterByCode = (source = [], code = '') => {
   return source.filter(item => {
-    const countryCode = item.countrycode ? item.countrycode.iso2 : 'unknown'
-    return countryCode === code
+    let values = [];
+    if (item.countrycode) {
+      values = Object.values(item.countrycode);
+    }
+    const condition = values.indexOf(code.toUpperCase()) > -1;
+    return condition;
   })
 }
 
-export const filterIso3code = (source, code) => {
-  return source.filter(item => {
-    const countryCode = item.countrycode ? item.countrycode.iso3 : 'unknown'
-    return countryCode === code
-  })
-}
 
 
 export const loadData = (path) => {
@@ -82,11 +80,4 @@ export const storeData = (path, data) => {
   } catch (err) {
     console.error(err)
   }
-}
-
-export const dataSetFilter = (iso2, iso3, timeseries) => {
-  let result;
-  if (iso2) timeseries = filterIso2code(timeseries, iso2)
-  if (iso3) timeseries = filterIso3code(timeseries, iso3)
-  return result;
 }

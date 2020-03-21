@@ -13,9 +13,9 @@ class CasesService {
     return db.brief();
   }
 
-  latest(iso2, iso3, onlyCountries) {
+  latest(iso, onlyCountries) {
     l.info(`${this.constructor.name}.latest()`);
-    return db.latest(iso2, iso3, onlyCountries);
+    return db.latest(iso, onlyCountries);
   }
 
   timeseries(iso2, iso3, onlyCountries) {
