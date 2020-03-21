@@ -9,7 +9,7 @@ import { filterByCode } from "../../utils/helpers";
 class CasesDatabase {
   constructor(data) {
     this._data = {};
-    this._lastUpdate = 0;
+    this._lastUpdate = '';
 
     /** Initial update */
     this.selfUpdate()

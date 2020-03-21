@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-openapi-validator": "^3.9.2",
     "express-pino-logger": "^4.0.0",
+    "moment": "^2.24.0",
     "nested-property": "^2.0.0",
     "pino": "^5.17.0",
     "request": "^2.88.2"
