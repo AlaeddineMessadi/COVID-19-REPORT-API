@@ -6,3 +6,6 @@ export default express
   .post('/', controller.create)
   .get('/', controller.all)
   .get('/:id', controller.byId);
+
+
+// (res, req, next) => res.json({ message: 'hello' })

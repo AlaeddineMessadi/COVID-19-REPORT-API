@@ -7,7 +7,7 @@ const expect = chai.expect;
 describe('Examples', () => {
   it('should get all examples', () =>
     request(Server)
-      .get('/api/v1/examples')
+      .get('/api/v1/cases')
       .expect('Content-Type', /json/)
       .then(r => {
         expect(r.body)
@@ -17,7 +17,7 @@ describe('Examples', () => {
 
   it('should add a new example', () =>
     request(Server)
-      .post('/api/v1/examples')
+      .post('/api/v1/cases')
       .send({ name: 'test' })
       .expect('Content-Type', /json/)
       .then(r => {
@@ -29,7 +29,7 @@ describe('Examples', () => {
 
   it('should get an example by id', () =>
     request(Server)
-      .get('/api/v1/examples/2')
+      .get('/api/v1/cases/2')
       .expect('Content-Type', /json/)
       .then(r => {
         expect(r.body)

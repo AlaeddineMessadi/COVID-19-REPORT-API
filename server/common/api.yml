@@ -4,7 +4,7 @@ info:
   description: CODIV-19-REPORT-API
   version: 1.0.0
 servers:
-  - url: /api/v1
+  - url: /api/version
 tags:
   - name: Examples
     description: Simple example endpoints
