@@ -29,6 +29,8 @@ export class Controller {
     CasesService.selfUpdate(secret).then(r => {
       if (r) res.json(r);
       else res.status(404).end();
+    }, err => {
+      res.status(404).json({ message: err }).end();
     });
   }
 

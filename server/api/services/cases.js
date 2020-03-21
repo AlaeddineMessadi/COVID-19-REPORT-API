@@ -29,9 +29,8 @@ class CasesService {
   }
 
   selfUpdate(secret) {
-    console.log(process.env.SESSION_SECRET)
     if (secret !== process.env.SESSION_SECRET) {
-      return Promise.reject('Wrong secrete');
+      return Promise.reject('Wrong secret');
     }
     return db.selfUpdate();
   }

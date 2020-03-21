@@ -12,6 +12,7 @@
     "test:debug": "mocha --require @babel/register --inspect-brk --exit",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "prod": "now --prod -e LOG_LEVEL=debug -e SESSION_SECRET=@session_secret",
     "deploy": "now -e LOG_LEVEL=debug -e SESSION_SECRET=@session_secret"
   },
   "dependencies": {

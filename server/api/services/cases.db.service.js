@@ -57,7 +57,7 @@ class CasesDatabase {
 
       return Promise.resolve('SelfUpdate is done!');
     } catch (error) {
-      return Promise.resolve('SelfUpdate cannot be done!');
+      return Promise.reject('SelfUpdate cannot be done!');
     }
   }
 }
