@@ -76,28 +76,10 @@ export const loadData = (path) => {
   }
 }
 
-export const storeData = (data, path) => {
+export const storeData = (path, data) => {
   try {
     fs.writeFileSync(path, JSON.stringify(data))
   } catch (err) {
     console.error(err)
   }
-}
-
-export const parseCsv = (dataSource, path, category) => {
-  return csvToJson()
-    .fromStream(request.get(path))
-    .subscribe((json) => {
-      if (json['Province/State']) {
-        const provincestate = json['Province/State']
-        dataSource[category][provincestate] = json
-      } else if (json['Country/Region']) {
-        const countryregion = json['Country/Region']
-        dataSource[category][countryregion] = json
-      }
-
-      return new Promise((resolve, reject) => {
-        resolve()
-      })
-    })
 }
