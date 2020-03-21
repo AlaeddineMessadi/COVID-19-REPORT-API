@@ -2,6 +2,10 @@
 import { parseCsvAll } from "../../utils/csvTools";
 import { filterByCode } from "../../utils/helpers";
 
+/**
+ * We load data from csv to the database when Initializing 
+ * https://github.com/CSSEGISandData/COVID-19
+ */
 class CasesDatabase {
   constructor(data) {
     this._data = {};
@@ -57,6 +61,5 @@ class CasesDatabase {
     }
   }
 }
-
 
 export default new CasesDatabase();

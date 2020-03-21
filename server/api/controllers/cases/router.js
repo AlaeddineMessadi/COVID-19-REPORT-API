@@ -6,4 +6,5 @@ export default express
   .get('/', controller.all)
   .get('/brief', controller.brief)
   .get('/latest', controller.latest)
+  .get('/timeseries', controller.latest)
   .get('/:id', controller.byId);

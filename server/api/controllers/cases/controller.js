@@ -16,6 +16,12 @@ export class Controller {
   }
 
 
+  timeseries(req, res) {
+    const { iso, onlyCountries } = req.query;
+
+    CasesService.timeseries(iso, onlyCountries).then(r => res.json(r));
+  }
+
   byId(req, res) {
     CasesService.byId(req.params.id).then(r => {
       if (r) res.json(r);
