@@ -1,4 +1,4 @@
-import iso2CountryLoc from '../data/iso2-country-loc.json'
+import iso2CountryLoc from '../data/iso2.json'
 import fs from 'fs';
 
 export const getMergedByCountry = (list) => {
@@ -82,4 +82,22 @@ export const storeData = (data, path) => {
   } catch (err) {
     console.error(err)
   }
+}
+
+export const parseCsv = (dataSource, path, category) => {
+  return csvToJson()
+    .fromStream(request.get(path))
+    .subscribe((json) => {
+      if (json['Province/State']) {
+        const provincestate = json['Province/State']
+        dataSource[category][provincestate] = json
+      } else if (json['Country/Region']) {
+        const countryregion = json['Country/Region']
+        dataSource[category][countryregion] = json
+      }
+
+      return new Promise((resolve, reject) => {
+        resolve()
+      })
+    })
 }
