@@ -5,6 +5,10 @@ export class Controller {
     CasesService.all().then(r => res.json(r));
   }
 
+  brief(req, res) {
+    CasesService.all().then(r => res.json(r));
+  }
+
   byId(req, res) {
     CasesService.byId(req.params.id).then(r => {
       if (r) res.json(r);
@@ -16,7 +20,7 @@ export class Controller {
     CasesService.create(req.body.name).then(r =>
       res
         .status(201)
-        .location(`/api/v1/examples/${r.id}`)
+        .location(`/api/v1/cases/${r.id}`)
         .json(r)
     );
   }

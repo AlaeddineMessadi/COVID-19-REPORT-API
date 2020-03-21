@@ -3,9 +3,6 @@ import controller from './controller';
 
 export default express
   .Router()
-  .post('/', controller.create)
   .get('/', controller.all)
+  .get('/brief', controller.brief)
   .get('/:id', controller.byId);
-
-
-// (res, req, next) => res.json({ message: 'hello' })

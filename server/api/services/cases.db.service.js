@@ -1,39 +1,45 @@
 
 import { parseCsvAll } from "../../utils/csvTools";
 
-
 class CasesDatabase {
-  constructor() {
-    this._confirmed = [];
-    this._deaths = [];
-    this._recovered = [];
-    this._counter = 0;
+  constructor(data) {
+    this._data = {};
+    this._lastUpdate = 0;
 
-    this.insert('example 0');
-    this.insert('example 1');
+    /** Initial update */
+    this.selfUpdate()
   }
 
-  async all() {
+  setData(data) {
+    this._data = data;
+  }
 
-    const result = await parseCsvAll()
-    return Promise.resolve(result);
+  all() {
+    return Promise.resolve(this._data);
+  }
+
+  brief() {
+    return Promise.resolve(this._data.brief);
   }
 
   byId(id) {
-    return Promise.resolve(this._confirmed[id]);
+    return Promise.resolve(this._data[id]);
   }
 
-  insert(name) {
-    const record = {
-      id: this._counter,
-      name,
-    };
+  async selfUpdate() {
+    console.log('selft upadte!')
 
-    this._counter += 1;
-    this._confirmed.push(record);
+    try {
+      const result = parseCsvAll();
+      this.setData(result);
+      this._lastUpdate = new Date().toISOString();
 
-    return Promise.resolve(record);
+      return Promise.resolve(true);
+    } catch (error) {
+      return Promise.resolve(false);
+    }
   }
 }
+
 
 export default new CasesDatabase();

@@ -79,7 +79,7 @@ export const parseCsvAll = () => {
 
       console.log(`Confirmed: ${brief.confirmed}, Deaths: ${brief.deaths}, Recovered: ${brief.recovered}`)
 
-      storeData('./server/utils/response.json', responseSet)
+      // storeData('./server/data/response.json', responseSet)
 
       return Promise.resolve(responseSet);
     })

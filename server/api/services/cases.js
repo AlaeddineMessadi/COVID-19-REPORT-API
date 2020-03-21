@@ -1,8 +1,14 @@
 import l from '../../common/logger';
 import db from './cases.db.service';
 
+
 class CasesService {
   all() {
+    l.info(`${this.constructor.name}.all()`);
+    return db.all();
+  }
+
+  brief() {
     l.info(`${this.constructor.name}.all()`);
     return db.all();
   }
@@ -12,8 +18,8 @@ class CasesService {
     return db.byId(id);
   }
 
-  create(name) {
-    return db.insert(name);
+  selfUpdate(name) {
+    return db.selfUpdate();
   }
 }
 
