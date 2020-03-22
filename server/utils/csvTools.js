@@ -4,6 +4,7 @@ import { csvPaths } from '../data';
 import { getMergedByCountry } from './helpers';
 import { COLUMN, CODES } from './constants';
 import { parseCsv } from './parser';
+import logger from '../common/logger';
 
 const responseSet = {
   brief: '{}',
@@ -16,8 +17,6 @@ const responseSet = {
 let lastUpdate;
 
 export const parseCsvAll = () => {
-  console.log('Updated at ' + new Date().toISOString());
-
   const dataSource = {
     confirmed: {},
     deaths: {},
@@ -40,62 +39,61 @@ export const parseCsvAll = () => {
       const latest = {};
       const timeseries = {};
 
-      for (const [category, value] of Object.entries(dataSource)) {
-        for (const [name, item] of Object.entries(value)) {
-          const keys = Object.keys(item);
-          const cell = item[keys[keys.length - 1]];
-          const latestCount = cell
-            ? Number(cell)
-            : Number(item[keys[keys.length - 2]]);
+      try {
 
-          /**
-           * brief
-           */
-          brief[category] += latestCount;
 
-          /**
-           * latest
-           */
-          createPropertyIfNeed(latest, name, item);
-          latest[name][category] = latestCount;
+        for (const [category, value] of Object.entries(dataSource)) {
+          for (const [name, item] of Object.entries(value)) {
+            const keys = Object.keys(item);
+            const cell = item[keys[keys.length - 1]];
+            const latestCount = cell
+              ? Number(cell)
+              : Number(item[keys[keys.length - 2]]);
 
-          /**
-           * timeseries
-           */
-          createPropertyIfNeed(timeseries, name, item);
-          for (const date of keys.slice(4)) {
-            nestedProperty.set(
-              timeseries[name],
-              `timeseries.${date}.${category}`,
-              Number(item[date])
-            );
+            /**  brief */
+            brief[category] += latestCount;
+
+            /** latest */
+            createPropertyIfNeed(latest, name, item);
+            latest[name][category] = latestCount;
+
+            /** timeseries */
+            createPropertyIfNeed(timeseries, name, item);
+            for (const date of keys.slice(4)) {
+              nestedProperty.set(
+                timeseries[name],
+                `timeseries.${date}.${category}`,
+                Number(item[date])
+              );
+            }
           }
         }
+
+        responseSet.brief = brief;
+        responseSet.latest = Object.values(latest);
+        responseSet.timeseries = Object.values(timeseries);
+
+        const copyLatest = JSON.parse(JSON.stringify(latest));
+        responseSet.latestOnlyCountries = getMergedByCountry(
+          Object.values(copyLatest)
+        );
+        const copyTimeseries = JSON.parse(JSON.stringify(timeseries));
+        responseSet.timeseriesOnlyCountries = getMergedByCountry(
+          Object.values(copyTimeseries)
+        );
+
+        logger.info(`Confirmed: ${brief.confirmed}, Deaths: ${brief.deaths}, Recovered: ${brief.recovered}`);
+
+        // storeData('./server/data/response.json', responseSet)
+
+        return Promise.resolve(responseSet);
+      } catch (err) {
+        logger.error('Error on Results Promise inner: ' + err);
+        return Promise.reject('Error in parsing csv');
       }
-
-      responseSet.brief = brief;
-      responseSet.latest = Object.values(latest);
-      responseSet.timeseries = Object.values(timeseries);
-
-      const copyLatest = JSON.parse(JSON.stringify(latest));
-      responseSet.latestOnlyCountries = getMergedByCountry(
-        Object.values(copyLatest)
-      );
-      const copyTimeseries = JSON.parse(JSON.stringify(timeseries));
-      responseSet.timeseriesOnlyCountries = getMergedByCountry(
-        Object.values(copyTimeseries)
-      );
-
-      console.log(
-        `Confirmed: ${brief.confirmed}, Deaths: ${brief.deaths}, Recovered: ${brief.recovered}`
-      );
-
-      // storeData('./server/data/response.json', responseSet)
-
-      return Promise.resolve(responseSet);
     })
     .catch(error => {
-      console.log('Error on Results Promise: ' + error);
+      logger.error('Error on Results Promise: ' + error);
     });
 };
 

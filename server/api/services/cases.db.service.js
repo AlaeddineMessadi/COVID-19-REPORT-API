@@ -12,9 +12,6 @@ class CasesDatabase {
     this._data = {};
     this._lastUpdate = '';
 
-    /** Initial update */
-    this.selfUpdate();
-
     /** Execute a cron job every 6 hours  */
     schedule.scheduleJob('0 */6 * * *', () => {
       logger.info(`0 */6 * * * : `);
@@ -27,28 +24,46 @@ class CasesDatabase {
     this._data = data;
   }
 
-  all() {
+  async all() {
+    if (!this._data.brief) {
+      logger.warn('force update');
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
+    }
+
+    const lastUpdate = this._lastUpdate;
     const count = this._data.length;
     const data = this._data;
     logger.info(`All count : `, count);
-    return Promise.resolve({ count, data });
+    return Promise.resolve({ lastUpdate, count, data });
   }
 
-  brief() {
-    console.log(this._data.brief)
+  async brief() {
     if (!this._data.brief) {
       logger.warn('force update');
-      this.selfUpdate();
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
     }
 
     logger.info(`Brief : `, this._data.brief);
-    return Promise.resolve(this._data.brief);
+    const lastUpdate = this._lastUpdate;
+    return Promise.resolve({ lastUpdate, data: this._data.brief });
   }
 
-  latest(iso, onlyCountries) {
+  async latest(iso, onlyCountries) {
     if (!this._data.latest) {
       logger.warn('force update');
-      this.selfUpdate();
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
     }
 
     let latest = onlyCountries
@@ -57,35 +72,46 @@ class CasesDatabase {
 
     if (iso) latest = filterByCode(latest, iso);
 
-    return Promise.resolve({ count: latest.length, data: latest });
+    const lastUpdate = this._lastUpdate;
+    return Promise.resolve({ lastUpdate, count: latest.length, data: latest });
   }
 
-  timeseries(iso, onlyCountries) {
+  async timeseries(iso, onlyCountries) {
     if (!this._data.timeseries) {
       logger.warn('force update');
-      this.selfUpdate();
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
     }
+
     let timeseries = onlyCountries
       ? this._data.timeseriesOnlyCountries
       : this._data.timeseries;
 
     if (iso) timeseries = filterByCode(timeseries, iso);
 
-    return Promise.resolve({ count: timeseries.length, data: timeseries });
+    const lastUpdate = this._lastUpdate;
+    return Promise.resolve({ lastUpdate, count: timeseries.length, data: timeseries });
   }
 
   async selfUpdate() {
-    logger.info('self UPDATE!');
+    logger.info('self UPDATE triggered!');
 
     try {
-      const result = await parseCsvAll();
-      this.setData(result);
+      const r = await parseCsvAll();
+      if (!r) {
+        logger.error(`ParseCsv return undefined  `, e);
+        return Promise.reject('SelfUpdate cannot be done!');
+      }
+      this.setData(r);
       this._lastUpdate = new Date().toISOString();
-
       logger.info(`Last update : `, this._lastUpdate);
       return Promise.resolve('SelfUpdate is done!');
-    } catch (error) {
-      logger.error(`SelfUpdate cannot be done : `, error);
+    }
+    catch (e) {
+      logger.error(`SelfUpdate cannot be done : `, e);
       return Promise.reject('SelfUpdate cannot be done!');
     }
   }
