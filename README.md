@@ -55,7 +55,7 @@ $ yarn start
 
 #! iso parameter can be iso2 or iso3 for example: US or USA , CN or CHN
 
-exemples:
+examples:
 [GET]   /api/v1/cases/latest
 [GET]   /api/v1/cases/latest?onlyCounties=true
 [GET]   /api/v1/cases/latest?iso=US
@@ -64,7 +64,7 @@ exemples:
 # Get me al timeseries in the world or in specific region or country
 [GET]   /api/v1/cases/timeseries   # queries {iso: String , onlyCountries: Boolean}
 
-exemples:
+examples:
 [GET]   /api/v1/cases/timeseries
 [GET]   /api/v1/cases/timeseries?onlyCounties=false
 [GET]   /api/v1/cases/timeseries?iso=DE
