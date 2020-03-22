@@ -2,6 +2,9 @@
 
 COVID-19-REPORT-API is an API Service to keep tracking  COVID-19 cases worldwide
 
+[Preview]:https://covid-19-report-api.now.sh/	"Production link"
+
+
 ## Get Started
 
 ### Prerequisites
