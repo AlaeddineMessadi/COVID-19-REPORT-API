@@ -2,6 +2,9 @@
 
 COVID-19-REPORT-API is an API Service to keep tracking  COVID-19 cases worldwide
 
+[Preview]:https://covid-19-report-api.now.sh/	"Production link"
+
+
 ## Get Started
 
 ### Prerequisites
@@ -46,7 +49,7 @@ $ yarn start
 
 
 
-```makefile
+```markdown
 # Get me a brief report
 [GET]   /api/v1/cases/brief
 
@@ -107,15 +110,19 @@ Fix all prettier linter errors
 $ yarn lint
 ```
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/AlaeddineMessadi/COVID-19-REPORT-API.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AlaeddineMessadi/COVID-19-REPORT-API/alerts/)
+
 ## Deployment
 
 ```shell
 $ now
 ```
+[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/AlaeddineMessadi/COVID-19-REPORT-API/tree/master)
 
 
 
 ### MIT License
 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/AlaeddineMessadi)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) 
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/AlaeddineMessadi)
 
