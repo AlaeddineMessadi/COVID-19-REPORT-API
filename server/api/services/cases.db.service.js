@@ -34,20 +34,21 @@ class CasesDatabase {
     return Promise.resolve({ count, data });
   }
 
-  async brief() {
+  brief() {
+    console.log(this._data.brief)
     if (!this._data.brief) {
       logger.warn('force update');
-      await this.selfUpdate();
+      this.selfUpdate();
     }
 
-    logger.info(`Brief : `, this._data);
-    return Promise.resolve(this._data);
+    logger.info(`Brief : `, this._data.brief);
+    return Promise.resolve(this._data.brief);
   }
 
-  async latest(iso, onlyCountries) {
+  latest(iso, onlyCountries) {
     if (!this._data.latest) {
       logger.warn('force update');
-      await this.selfUpdate();
+      this.selfUpdate();
     }
 
     let latest = onlyCountries
@@ -59,10 +60,10 @@ class CasesDatabase {
     return Promise.resolve({ count: latest.length, data: latest });
   }
 
-  async timeseries(iso, onlyCountries) {
+  timeseries(iso, onlyCountries) {
     if (!this._data.timeseries) {
       logger.warn('force update');
-      await this.selfUpdate();
+      this.selfUpdate();
     }
     let timeseries = onlyCountries
       ? this._data.timeseriesOnlyCountries
