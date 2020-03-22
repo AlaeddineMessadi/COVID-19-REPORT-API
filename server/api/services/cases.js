@@ -1,7 +1,6 @@
 // import console from '../../common/logger';
 import db from './cases.db.service';
 
-
 class CasesService {
   all() {
     console.info(`${this.constructor.name}.all()`);

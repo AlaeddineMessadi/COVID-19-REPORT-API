@@ -26,6 +26,7 @@
     "express-pino-logger": "^4.0.0",
     "moment": "^2.24.0",
     "nested-property": "^2.0.0",
+    "node-schedule": "^1.3.2",
     "pino": "^5.17.0",
     "request": "^2.88.2"
   },

@@ -1,7 +1,7 @@
 
 import { parseCsvAll } from "../../utils/csvTools";
 import { filterByCode } from "../../utils/helpers";
-
+import schedule from 'node-schedule'
 /**
  * We load data from csv to the database when Initializing 
  * https://github.com/CSSEGISandData/COVID-19
@@ -13,6 +13,11 @@ class CasesDatabase {
 
     /** Initial update */
     this.selfUpdate()
+
+    /** Execute a cron job every 2 hours  */
+    schedule.scheduleJob('0 */2 * * *', e => {
+      this.selfUpdate()
+    })
   }
 
   setData(data) {
