@@ -15,30 +15,41 @@ export class Controller {
     CasesService.latest(iso, onlyCountries).then(r => res.json(r));
   }
 
-
   timeseries(req, res) {
     const { iso, onlyCountries } = req.query;
 
     CasesService.timeseries(iso, onlyCountries).then(r => res.json(r));
   }
 
-
   selfUpdate(req, res) {
     const { secret } = req.query;
-    if (!secret) return res.status(401).json({ message: 'parameter is missing' }).end();
+    if (!secret)
+      return res
+        .status(401)
+        .json({ message: 'parameter is missing' })
+        .end();
     CasesService.selfUpdate(secret).then(
       result => res.json({ message: result }).end(),
-      err => res.status(404).json({ message: err }).end()
+      err =>
+        res
+          .status(404)
+          .json({ message: err })
+          .end()
     );
   }
 
-
   byId(req, res) {
-    CasesService.byId(req.params.id).then(result => {
-      if (result) res.json({ message: result }).end();
-    }, err => {
-      res.status(404).json({ message: err }).end();
-    });
+    CasesService.byId(req.params.id).then(
+      result => {
+        if (result) res.json({ message: result }).end();
+      },
+      err => {
+        res
+          .status(404)
+          .json({ message: err })
+          .end();
+      }
+    );
   }
 
   create(req, res) {

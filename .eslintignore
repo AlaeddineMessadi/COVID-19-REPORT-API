@@ -1,5 +1,3 @@
 node_modules/
-dist/
-public/api-explorer/
-*.yaml
-*.yml
+build/
+now

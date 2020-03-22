@@ -37,10 +37,10 @@ export default class ExpressServer {
     const welcome = p => () =>
       l.info(
         `up and running in ${process.env.NODE_ENV ||
-        'development'} @: ${os.hostname()} on port: ${p}}`
+          'development'} @: ${os.hostname()} on port: ${p}}`
       );
 
-    this.routes(app)
+    this.routes(app);
     try {
       http.createServer(app).listen(port, welcome(port));
     } catch (error) {

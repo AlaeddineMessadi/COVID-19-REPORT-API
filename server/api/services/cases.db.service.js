@@ -1,23 +1,22 @@
-
-import { parseCsvAll } from "../../utils/csvTools";
-import { filterByCode } from "../../utils/helpers";
-import schedule from 'node-schedule'
+import { parseCsvAll } from '../../utils/csvTools';
+import { filterByCode } from '../../utils/helpers';
+import schedule from 'node-schedule';
 /**
- * We load data from csv to the database when Initializing 
+ * We load data from csv to the database when Initializing
  * https://github.com/CSSEGISandData/COVID-19
  */
 class CasesDatabase {
-  constructor(data) {
+  constructor() {
     this._data = {};
     this._lastUpdate = '';
 
     /** Initial update */
-    this.selfUpdate()
+    this.selfUpdate();
 
     /** Execute a cron job every 2 hours  */
-    schedule.scheduleJob('0 */2 * * *', e => {
-      this.selfUpdate()
-    })
+    schedule.scheduleJob('0 */2 * * *', () => {
+      this.selfUpdate();
+    });
   }
 
   setData(data) {
@@ -33,19 +32,23 @@ class CasesDatabase {
   }
 
   latest(iso, onlyCountries) {
-    let latest = onlyCountries ? this._data.latestOnlyCountries : this._data.latest
+    let latest = onlyCountries
+      ? this._data.latestOnlyCountries
+      : this._data.latest;
 
-    if (iso) latest = filterByCode(latest, iso)
+    if (iso) latest = filterByCode(latest, iso);
 
     return Promise.resolve({ count: latest.length, data: latest });
   }
 
   timeseries(iso, onlyCountries) {
-    let timeseries = onlyCountries ? this._data.timeseriesOnlyCountries : this._data.timeseries;
+    let timeseries = onlyCountries
+      ? this._data.timeseriesOnlyCountries
+      : this._data.timeseries;
 
-    if (iso) latest = filterByCode(timeseries, iso)
+    if (iso) timeseries = filterByCode(timeseries, iso);
 
-    return Promise.resolve(result);
+    return Promise.resolve({ count: timeseries.length, data: timeseries });
   }
 
   byId(id) {
@@ -53,7 +56,7 @@ class CasesDatabase {
   }
 
   async selfUpdate() {
-    console.log('self UPDATE!')
+    console.log('self UPDATE!');
 
     try {
       const result = await parseCsvAll();
