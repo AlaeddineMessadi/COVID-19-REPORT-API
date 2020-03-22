@@ -49,7 +49,7 @@ $ yarn start
 
 
 
-```makefile
+```markdown
 # Get me a brief report
 [GET]   /api/v1/cases/brief
 
