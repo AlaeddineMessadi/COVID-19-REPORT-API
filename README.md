@@ -119,7 +119,9 @@ $ now
 ```
 [![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/AlaeddineMessadi/COVID-19-REPORT-API/tree/master)
 
+### Data Source
 
+data repository for the 2019 Novel Coronavirus Visual Dashboard operated by the Johns Hopkins University Center for Systems Science and Engineering ([JHU CSSE](https://github.com/CSSEGISandData/COVID-19))
 
 ### MIT License
 

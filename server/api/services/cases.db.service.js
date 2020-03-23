@@ -1,5 +1,5 @@
 import { parseCsvAll } from '../../utils/csvTools';
-import { filterByCode } from '../../utils/helpers';
+import { filterByCode, storeData } from '../../utils/helpers';
 import logger from '../../common/logger';
 
 import schedule from 'node-schedule';
@@ -51,6 +51,7 @@ class CasesDatabase {
       }
     }
 
+
     logger.info(`Brief : `, this._data.brief);
     const lastUpdate = this._lastUpdate;
     return Promise.resolve({ lastUpdate, data: this._data.brief });
@@ -91,8 +92,8 @@ class CasesDatabase {
       : this._data.timeseries;
 
     if (iso) timeseries = filterByCode(timeseries, iso);
-
     const lastUpdate = this._lastUpdate;
+
     return Promise.resolve({ lastUpdate, count: timeseries.length, data: timeseries });
   }
 

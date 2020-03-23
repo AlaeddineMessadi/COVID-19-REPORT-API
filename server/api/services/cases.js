@@ -17,9 +17,9 @@ class CasesService {
     return db.latest(iso, onlyCountries);
   }
 
-  timeseries(iso2, iso3, onlyCountries) {
+  timeseries(iso, onlyCountries) {
     logger.info(`${this.constructor.name}.timeseries()`);
-    return db.timeseries(iso2, iso3, onlyCountries);
+    return db.timeseries(iso, onlyCountries);
   }
 
   byId(id) {

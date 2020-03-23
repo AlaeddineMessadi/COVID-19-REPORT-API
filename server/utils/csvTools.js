@@ -61,9 +61,7 @@ export const parseCsvAll = () => {
             createPropertyIfNeed(timeseries, name, item);
             for (const date of keys.slice(4)) {
               nestedProperty.set(
-                timeseries[name],
-                `timeseries.${date}.${category}`,
-                Number(item[date])
+                timeseries[name], `timeseries.${date}.${category}`, Number(item[date])
               );
             }
           }
@@ -84,7 +82,7 @@ export const parseCsvAll = () => {
 
         logger.info(`Confirmed: ${brief.confirmed}, Deaths: ${brief.deaths}, Recovered: ${brief.recovered}`);
 
-        // storeData('./server/data/response.json', responseSet)
+        // storeData('./server/data/timeseries.json', timeseries)
 
         return Promise.resolve(responseSet);
       } catch (err) {
