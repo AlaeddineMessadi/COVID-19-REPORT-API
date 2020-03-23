@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 
 import l from './logger';
 import errorHandler from '../api/middlewares/error.handler';
+import cross from '../api/middlewares/cross';
 
 const app = new Express();
 const exit = process.exit;
@@ -22,6 +23,8 @@ export default class ExpressServer {
         limit: process.env.REQUEST_LIMIT || '100kb',
       })
     );
+
+    app.use(cross);
     app.use(bodyParser.text({ limit: process.env.REQUEST_LIMIT || '100kb' }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(Express.static(`${root}/public`));
@@ -37,7 +40,7 @@ export default class ExpressServer {
     const welcome = p => () =>
       l.info(
         `up and running in ${process.env.NODE_ENV ||
-          'development'} @: ${os.hostname()} on port: ${p}}`
+        'development'} @: ${os.hostname()} on port: ${p}}`
       );
 
     this.routes(app);
