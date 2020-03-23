@@ -117,7 +117,7 @@ $ yarn lint
 ```shell
 $ now
 ```
-[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/import/project?template=https://github.com/AlaeddineMessadi/COVID-19-REPORT-API/tree/master)
+[![Deploy with ZEIT Now](https://zeit.co/button)](https://deploy.now.sh/?repo=?template=https://github.com/AlaeddineMessadi/COVID-19-REPORT-API)
 
 
 
