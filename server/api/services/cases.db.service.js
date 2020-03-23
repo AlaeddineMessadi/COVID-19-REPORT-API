@@ -1,5 +1,5 @@
 import { parseCsvAll } from '../../utils/csvTools';
-import { filterByCode, storeData } from '../../utils/helpers';
+import { filterByCode, storeData, parseLatestResponse } from '../../utils/helpers';
 import logger from '../../common/logger';
 
 import schedule from 'node-schedule';
@@ -95,6 +95,19 @@ class CasesDatabase {
     const lastUpdate = this._lastUpdate;
 
     return Promise.resolve({ lastUpdate, count: timeseries.length, data: timeseries });
+  }
+
+  async getCountriesList() {
+    if (!this._data.latest) {
+      logger.warn('force update');
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
+    }
+
+    return Promise.resolve(parseLatestResponse(this._data.latest))
   }
 
   async selfUpdate() {

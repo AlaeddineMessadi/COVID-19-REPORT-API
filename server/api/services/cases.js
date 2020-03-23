@@ -22,9 +22,9 @@ class CasesService {
     return db.timeseries(iso, onlyCountries);
   }
 
-  byId(id) {
-    logger.info(`${this.constructor.name}.byId(${id})`);
-    return db.byId(id);
+  getCountriesList() {
+    logger.info(`${this.constructor.name}.getCountriesList()`);
+    return db.getCountriesList();
   }
 
   selfUpdate(secret) {

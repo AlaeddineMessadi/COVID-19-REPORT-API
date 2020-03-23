@@ -79,3 +79,21 @@ export const storeData = (path, data) => {
     console.error(err);
   }
 };
+
+export const parseLatestResponse = (data) => {
+  let countries = [];
+
+  data.forEach((elm) => {
+    const {
+      countryregion,
+      provincestate
+    } = elm;
+
+    // Country region
+    let name = `${countryregion}${provincestate ? ` (${provincestate})` : ''}`;
+
+    countries.push(name);
+  });
+
+  return { countries };
+}

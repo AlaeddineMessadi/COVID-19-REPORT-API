@@ -21,6 +21,10 @@ export class Controller {
     CasesService.timeseries(iso, onlyCountries).then(r => res.json(r));
   }
 
+  countriesList(req, res) {
+    CasesService.getCountriesList().then(r => res.json(r));
+  }
+
   selfUpdate(req, res) {
     const { secret } = req.query;
     if (!secret)
