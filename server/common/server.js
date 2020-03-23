@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 
 import l from './logger';
 import errorHandler from '../api/middlewares/error.handler';
-import cross from '../api/middlewares/cross';
+import cors from '../api/middlewares/cors';
 
 const app = new Express();
 const exit = process.exit;
@@ -24,7 +24,7 @@ export default class ExpressServer {
       })
     );
 
-    app.use(cross);
+    app.use(cors);
     app.use(bodyParser.text({ limit: process.env.REQUEST_LIMIT || '100kb' }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(Express.static(`${root}/public`));
