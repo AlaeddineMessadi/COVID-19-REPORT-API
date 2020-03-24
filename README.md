@@ -64,7 +64,7 @@ examples:
 [GET]   /api/v1/cases/latest?iso=US
 [GET]   /api/v1/cases/latest?iso=US&onlyCounties=true
 
-# Get me al timeseries in the world or in specific region or country
+# Get me all timeseries in the world or in specific region or country
 [GET]   /api/v1/cases/timeseries   # queries {iso: String , onlyCountries: Boolean}
 
 examples:
@@ -72,6 +72,9 @@ examples:
 [GET]   /api/v1/cases/timeseries?onlyCounties=false
 [GET]   /api/v1/cases/timeseries?iso=DE
 [GET]   /api/v1/cases/latest?iso=CH&onlyCounties=true
+
+# Secret me list of contries/regions with iso2 and iso3
+[GET]   /api/v1/cases/countries
 
 # Secret endpoint to update Database
 [GET]   /api/v1/cases/udpate?secret=secret
