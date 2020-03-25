@@ -56,6 +56,9 @@ $ yarn start
 # Get me a brief report
 [GET]   /api/v1/cases/brief
 
+# Get me a brief timeseries 
+[GET]   /api/v1/cases/brief/timeseries
+
 # Get me all latest cases in the world or in specific region or country
 [GET]   /api/v1/cases/latest   # parameters {iso: String, province: String, onlyCountries: Boolean}
 
