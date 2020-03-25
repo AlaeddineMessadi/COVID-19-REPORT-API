@@ -97,7 +97,15 @@ class CasesDatabase {
       ? this._data.timeseriesOnlyCountries
       : this._data.timeseries;
 
+
+    if (iso && !province && isProvinceState(timeseries, iso)) {
+      /** check incase client want only countries */
+      latest = this._data.timeseriesOnlyCountries;
+    }
+
     if (iso) timeseries = filterByCode(timeseries, iso);
+    if (province) timeseries = filterByProvince(timeseries, province);
+
     const lastUpdate = this._lastUpdate;
 
     return Promise.resolve({ lastUpdate, count: timeseries.length, data: timeseries });
