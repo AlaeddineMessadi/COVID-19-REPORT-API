@@ -10,15 +10,15 @@ export class Controller {
   }
 
   latest(req, res) {
-    const { iso, onlyCountries } = req.query;
+    const { iso, province, onlyCountries } = req.query;
 
-    CasesService.latest(iso, onlyCountries).then(r => res.json(r));
+    CasesService.latest(iso, province, onlyCountries).then(r => res.json(r));
   }
 
   timeseries(req, res) {
-    const { iso, onlyCountries } = req.query;
+    const { iso, province, onlyCountries } = req.query;
 
-    CasesService.timeseries(iso, onlyCountries).then(r => res.json(r));
+    CasesService.timeseries(iso, province, onlyCountries).then(r => res.json(r));
   }
 
   countriesList(req, res) {

@@ -12,14 +12,14 @@ class CasesService {
     return db.brief();
   }
 
-  latest(iso, onlyCountries) {
+  latest(iso, province, onlyCountries) {
     logger.info(`${this.constructor.name}.latest()`);
-    return db.latest(iso, onlyCountries);
+    return db.latest(iso, province, onlyCountries);
   }
 
-  timeseries(iso, onlyCountries) {
+  timeseries(iso, province, onlyCountries) {
     logger.info(`${this.constructor.name}.timeseries()`);
-    return db.timeseries(iso, onlyCountries);
+    return db.timeseries(iso, province, onlyCountries);
   }
 
   getCountriesList() {

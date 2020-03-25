@@ -1,5 +1,5 @@
 import { parseCsvAll } from '../../utils/csvTools';
-import { filterByCode, storeData, parseLatestResponse } from '../../utils/helpers';
+import { filterByCode, storeData, parseLatestResponse, filterByProvince, isProvinceState } from '../../utils/helpers';
 import logger from '../../common/logger';
 
 import schedule from 'node-schedule';
@@ -57,7 +57,7 @@ class CasesDatabase {
     return Promise.resolve({ lastUpdate, data: this._data.brief });
   }
 
-  async latest(iso, onlyCountries) {
+  async latest(iso, province, onlyCountries) {
     if (!this._data.latest) {
       logger.warn('force update');
       try {
@@ -71,13 +71,19 @@ class CasesDatabase {
       ? this._data.latestOnlyCountries
       : this._data.latest;
 
+    if (iso && !province && isProvinceState(latest, iso)) {
+      /** check incase client want only countries */
+      latest = this._data.latestOnlyCountries;
+    }
+
     if (iso) latest = filterByCode(latest, iso);
+    if (province) latest = filterByProvince(latest, province);
 
     const lastUpdate = this._lastUpdate;
     return Promise.resolve({ lastUpdate, count: latest.length, data: latest });
   }
 
-  async timeseries(iso, onlyCountries) {
+  async timeseries(iso, province, onlyCountries) {
     if (!this._data.timeseries) {
       logger.warn('force update');
       try {

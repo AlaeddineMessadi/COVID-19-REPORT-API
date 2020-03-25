@@ -53,14 +53,28 @@ export const merge = (target, item, key) => {
 };
 
 export const filterByCode = (source = [], code = '') => {
-  return source.filter(item => {
-    let values = [];
-    if (item.countrycode) {
-      values = Object.values(item.countrycode);
-    }
-    const condition = values.indexOf(code.toUpperCase()) > -1;
-    return condition;
-  });
+  return source.filter(item => isIsoExist(item, code));
+};
+
+export const filterByProvince = (source = [], provincestate = '') => {
+  return source.find(
+    item => item.provincestate.toLowerCase() === provincestate.toLowerCase()
+  );
+};
+
+export const isIsoExist = (item, iso) => {
+  let values = [];
+  if (item.countrycode) {
+    values = Object.values(item.countrycode);
+  }
+  return values.indexOf(iso.toUpperCase()) > -1;
+}
+
+export const isProvinceState = (source, code = '') => {
+  const index = source.findIndex(
+    item => isIsoExist(item, code)
+  )
+  return index > 0;
 };
 
 export const loadData = path => {
@@ -90,10 +104,14 @@ export const parseLatestResponse = (data) => {
       countrycode
     } = elm;
 
+    if (countries[countryregion] && provincestate) {
+      countries[countryregion] = { countrycode, provincestate: null };
+    }
+
     // Country region
     let name = `${countryregion}${provincestate ? ` (${provincestate})` : ''}`;
 
-    countries[name] = countrycode;
+    countries[name] = { countrycode, provincestate };
   });
 
   return { countries };
