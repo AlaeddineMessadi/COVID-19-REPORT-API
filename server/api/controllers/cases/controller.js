@@ -9,6 +9,10 @@ export class Controller {
     CasesService.brief().then(r => res.json(r));
   }
 
+  briefTimeseries(req, res) {
+    CasesService.briefTimeseries().then(r => res.json(r));
+  }
+
   latest(req, res) {
     const { iso, province, onlyCountries } = req.query;
 

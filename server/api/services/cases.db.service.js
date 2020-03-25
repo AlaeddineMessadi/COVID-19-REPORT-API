@@ -20,7 +20,6 @@ class CasesDatabase {
   }
 
   setData(data) {
-    logger.info('Set Data');
     this._data = data;
   }
 
@@ -55,6 +54,20 @@ class CasesDatabase {
     logger.info(`Brief : `, this._data.brief);
     const lastUpdate = this._lastUpdate;
     return Promise.resolve({ lastUpdate, data: this._data.brief });
+  }
+
+  async briefTimeseries() {
+    if (!this._data.brieftimeseries) {
+      logger.warn('force update');
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
+    }
+
+    const lastUpdate = this._lastUpdate;
+    return Promise.resolve({ lastUpdate, data: this._data.brieftimeseries });
   }
 
   async latest(iso, province, onlyCountries) {

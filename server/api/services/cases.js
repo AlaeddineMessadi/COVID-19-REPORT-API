@@ -12,6 +12,11 @@ class CasesService {
     return db.brief();
   }
 
+  briefTimeseries() {
+    logger.info(`${this.constructor.name}.briefTimeseries()`);
+    return db.briefTimeseries();
+  }
+
   latest(iso, province, onlyCountries) {
     logger.info(`${this.constructor.name}.latest()`);
     return db.latest(iso, province, onlyCountries);

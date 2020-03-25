@@ -36,6 +36,7 @@ export const parseCsvAll = () => {
         [COLUMN.DEATHS]: 0,
         [COLUMN.RECOVERED]: 0,
       };
+      const briefTimeseries = {}
       const latest = {};
       const timeseries = {};
 
@@ -43,12 +44,12 @@ export const parseCsvAll = () => {
 
 
         for (const [category, value] of Object.entries(dataSource)) {
-          for (const [name, item] of Object.entries(value)) {
+          let entries = Object.entries(value)
+
+          for (const [name, item] of entries) {
             const keys = Object.keys(item);
-            const cell = item[keys[keys.length - 1]];
-            const latestCount = cell
-              ? Number(cell)
-              : Number(item[keys[keys.length - 2]]);
+            const key = keys.concat().reverse()[0]
+            const latestCount = Number(item[key]);
 
             /**  brief */
             brief[category] += latestCount;
@@ -63,6 +64,12 @@ export const parseCsvAll = () => {
               nestedProperty.set(
                 timeseries[name], `timeseries.${date}.${category}`, Number(item[date])
               );
+
+              /** timeseries brief */
+              const value = nestedProperty.get(briefTimeseries, `${date}.${category}`) || 0;
+              nestedProperty.set(
+                briefTimeseries, `${date}.${category}`, value + Number(item[date])
+              );
             }
           }
         }
@@ -70,6 +77,7 @@ export const parseCsvAll = () => {
         responseSet.brief = brief;
         responseSet.latest = Object.values(latest);
         responseSet.timeseries = Object.values(timeseries);
+        responseSet.brieftimeseries = briefTimeseries;
 
         const copyLatest = JSON.parse(JSON.stringify(latest));
         responseSet.latestOnlyCountries = getMergedByCountry(
