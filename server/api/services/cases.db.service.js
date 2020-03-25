@@ -79,6 +79,7 @@ class CasesDatabase {
     if (iso) latest = filterByCode(latest, iso);
     if (province) latest = filterByProvince(latest, province);
 
+    console.log(latest)
     const lastUpdate = this._lastUpdate;
     return Promise.resolve({ lastUpdate, count: latest.length, data: latest });
   }

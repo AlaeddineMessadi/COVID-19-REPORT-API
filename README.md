@@ -4,6 +4,15 @@ COVID-19-REPORT-API is an API Service to keep tracking  COVID-19 cases worldwide
 
 [Preview](https://covid-19-report-api.now.sh)
 
+<div align="center">
+	<br>
+	<img src="/static/gas-mask2.png" width="600px">
+	<br>
+	<hr>
+</div>
+
+<br>
+
 
 ## Get Started
 
@@ -48,13 +57,12 @@ $ yarn start
 ## Documentation
 
 
-
 ```markdown
 # Get me a brief report
 [GET]   /api/v1/cases/brief
 
 # Get me all latest cases in the world or in specific region or country
-[GET]   /api/v1/cases/latest   # queries {iso: String , onlyCountries: Boolean}
+[GET]   /api/v1/cases/latest   # parameters {iso: String, province: String, onlyCountries: Boolean}
 
 #! iso parameter can be iso2 or iso3 for example: US or USA , CN or CHN
 
@@ -63,15 +71,20 @@ examples:
 [GET]   /api/v1/cases/latest?onlyCounties=true
 [GET]   /api/v1/cases/latest?iso=US
 [GET]   /api/v1/cases/latest?iso=US&onlyCounties=true
+[GET]   /api/v1/cases/latest?onlyCounties=true
+[GET]   /api/v1/cases/latest?iso=AU&province=New+South+Wales
+[GET]   /api/v1/cases/latest?province=New+South+Wales
 
 # Get me all timeseries in the world or in specific region or country
-[GET]   /api/v1/cases/timeseries   # queries {iso: String , onlyCountries: Boolean}
+[GET]   /api/v1/cases/timeseries   # parameters {iso: String, province: String, onlyCountries: Boolean}
 
 examples:
 [GET]   /api/v1/cases/timeseries
 [GET]   /api/v1/cases/timeseries?onlyCounties=false
 [GET]   /api/v1/cases/timeseries?iso=DE
-[GET]   /api/v1/cases/latest?iso=CH&onlyCounties=true
+[GET]   /api/v1/cases/timeseries?iso=AU&province=New+South+Wales
+[GET]   /api/v1/cases/timeseries?province=New+South+Wales
+[GET]   /api/v1/cases/timeseries?iso=CH&onlyCounties=true
 
 # Secret me list of contries/regions with iso2 and iso3
 [GET]   /api/v1/cases/countries
