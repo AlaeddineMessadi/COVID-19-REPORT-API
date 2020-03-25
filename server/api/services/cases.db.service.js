@@ -24,14 +24,7 @@ class CasesDatabase {
   }
 
   async all() {
-    if (!this._data.brief) {
-      logger.warn('force update');
-      try {
-        const r = await this.selfUpdate();
-      } catch (error) {
-        logger.error('Cannot force update', error)
-      }
-    }
+    await this.updateIfNeeded(this._data);
 
     const lastUpdate = this._lastUpdate;
     const count = this._data.length;
@@ -41,15 +34,7 @@ class CasesDatabase {
   }
 
   async brief() {
-    if (!this._data.brief) {
-      logger.warn('force update');
-      try {
-        const r = await this.selfUpdate();
-      } catch (error) {
-        logger.error('Cannot force update', error)
-      }
-    }
-
+    await this.updateIfNeeded(this._data.brief);
 
     logger.info(`Brief : `, this._data.brief);
     const lastUpdate = this._lastUpdate;
@@ -57,28 +42,14 @@ class CasesDatabase {
   }
 
   async briefTimeseries() {
-    if (!this._data.brieftimeseries) {
-      logger.warn('force update');
-      try {
-        const r = await this.selfUpdate();
-      } catch (error) {
-        logger.error('Cannot force update', error)
-      }
-    }
+    await this.updateIfNeeded(this._data.brieftimeseries);
 
     const lastUpdate = this._lastUpdate;
     return Promise.resolve({ lastUpdate, data: this._data.brieftimeseries });
   }
 
   async latest(iso, province, onlyCountries) {
-    if (!this._data.latest) {
-      logger.warn('force update');
-      try {
-        const r = await this.selfUpdate();
-      } catch (error) {
-        logger.error('Cannot force update', error)
-      }
-    }
+    await this.updateIfNeeded(this._data.latest);
 
     let latest = onlyCountries
       ? this._data.latestOnlyCountries
@@ -92,20 +63,13 @@ class CasesDatabase {
     if (iso) latest = filterByCode(latest, iso);
     if (province) latest = filterByProvince(latest, province);
 
-    console.log(latest)
     const lastUpdate = this._lastUpdate;
     return Promise.resolve({ lastUpdate, count: latest.length, data: latest });
   }
 
   async timeseries(iso, province, onlyCountries) {
-    if (!this._data.timeseries) {
-      logger.warn('force update');
-      try {
-        const r = await this.selfUpdate();
-      } catch (error) {
-        logger.error('Cannot force update', error)
-      }
-    }
+    await this.updateIfNeeded(this._data.timeseries);
+
 
     let timeseries = onlyCountries
       ? this._data.timeseriesOnlyCountries
@@ -155,6 +119,17 @@ class CasesDatabase {
     catch (e) {
       logger.error(`SelfUpdate cannot be done : `, e);
       return Promise.reject('SelfUpdate cannot be done!');
+    }
+  }
+
+  async updateIfNeeded(data) {
+    if (!data) {
+      logger.warn('force update');
+      try {
+        const r = await this.selfUpdate();
+      } catch (error) {
+        logger.error('Cannot force update', error)
+      }
     }
   }
 }
