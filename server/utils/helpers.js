@@ -57,9 +57,10 @@ export const filterByCode = (source = [], code = '') => {
 };
 
 export const filterByProvince = (source = [], provincestate = '') => {
-  return source.find(
+  const result = source.find(
     item => item.provincestate.toLowerCase() === provincestate.toLowerCase()
   );
+  return [result];
 };
 
 export const isIsoExist = (item, iso) => {

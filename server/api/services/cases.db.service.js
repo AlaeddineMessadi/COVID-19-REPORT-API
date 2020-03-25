@@ -100,7 +100,7 @@ class CasesDatabase {
 
     if (iso && !province && isProvinceState(timeseries, iso)) {
       /** check incase client want only countries */
-      latest = this._data.timeseriesOnlyCountries;
+      timeseries = this._data.timeseriesOnlyCountries;
     }
 
     if (iso) timeseries = filterByCode(timeseries, iso);
