@@ -1,7 +1,10 @@
 import csvToJson from 'csvtojson';
 import request from 'request';
+import logger from '../common/logger';
 
 export const parseCsv = (dataSource, path, category) => {
+  logger.info('this is the path')
+  logger.info(path)
   return csvToJson()
     .fromStream(request.get(path))
     .subscribe(json => {

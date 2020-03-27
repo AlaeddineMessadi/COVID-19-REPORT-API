@@ -1,17 +1,17 @@
 import lookup from 'country-code-lookup';
 import nestedProperty from 'nested-property';
 import { csvPaths } from '../data';
-import { getMergedByCountry } from './helpers';
+import { getMergedByCountry, storeData } from './helpers';
 import { COLUMN, CODES } from './constants';
 import { parseCsv } from './parser';
 import logger from '../common/logger';
 
 const responseSet = {
-  brief: '{}',
-  latest: '{}',
-  latestOnlyCountries: '{}',
-  timeseries: '{}',
-  timeseriesOnlyCountries: '{}',
+  brief: {},
+  latest: {},
+  latestOnlyCountries: {},
+  timeseries: {},
+  timeseriesOnlyCountries: {},
 };
 
 let lastUpdate;
@@ -90,7 +90,7 @@ export const parseCsvAll = () => {
 
         logger.info(`Confirmed: ${brief.confirmed}, Deaths: ${brief.deaths}, Recovered: ${brief.recovered}`);
 
-        // storeData('./server/data/timeseries.json', timeseries)
+        storeData('./server/data/timeseries.json', responseSet)
 
         return Promise.resolve(responseSet);
       } catch (err) {
