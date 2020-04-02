@@ -16,7 +16,7 @@ COVID-19-REPORT-API is an API Service to keep tracking  COVID-19 cases worldwide
 
 ```shell
 # clone the repo
-$ git clone git@github.com:AlaeddineMessadi/COVID-19-REPORT-API.git
+$ git clone https://github.com/AlaeddineMessadi/COVID-19-REPORT-API.git
 
 # install dependencies
 $ yarn    ## or npm install
