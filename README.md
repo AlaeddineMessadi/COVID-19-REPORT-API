@@ -142,3 +142,10 @@ data repository for the 2019 Novel Coronavirus Visual Dashboard operated by the 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/AlaeddineMessadi)
 
+
+
+## Support:
+<a href="https://www.patreon.com/AlaeddineMessadi">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
