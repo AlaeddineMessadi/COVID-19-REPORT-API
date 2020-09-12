@@ -16,7 +16,7 @@ COVID-19-REPORT-API is an API Service to keep tracking  COVID-19 cases worldwide
 
 ```shell
 # clone the repo
-$ git clone git@github.com:AlaeddineMessadi/COVID-19-REPORT-API.git
+$ git clone https://github.com/AlaeddineMessadi/COVID-19-REPORT-API.git
 
 # install dependencies
 $ yarn    ## or npm install
@@ -141,4 +141,11 @@ data repository for the 2019 Novel Coronavirus Visual Dashboard operated by the 
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/AlaeddineMessadi)
+
+
+
+## Support:
+<a href="https://www.patreon.com/AlaeddineMessadi">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
 
