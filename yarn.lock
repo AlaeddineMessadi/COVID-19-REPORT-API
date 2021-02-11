@@ -1757,10 +1757,10 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-country-code-lookup@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/country-code-lookup/-/country-code-lookup-0.0.16.tgz#fef8799ce15309b52283a7996c91e3d367652b44"
-  integrity sha512-o8rADJe4VRJX6haq5gBpL4CJow0Y2ACb9EpQCxKpxHkUMqkAswSBijIFgWegcbUO1hjL6Y6cQDei5peQzWHY3A==
+country-code-lookup@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/country-code-lookup/-/country-code-lookup-0.0.18.tgz#389f4cd170e4c52c3fe84192db4dceaf6ae87f1a"
+  integrity sha512-wg6ZIa8PFiFhKBNPPzLWFm+wkK4ZPsT8AWitoYMcC6zRKqw3lR4my25AJ67+VKZ24VLEZg96SZmWW9IaNmGBDg==
 
 create-error-class@^3.0.0:
   version "3.0.2"
