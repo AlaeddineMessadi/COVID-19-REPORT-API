@@ -3624,10 +3624,10 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-nested-property@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/nested-property/-/nested-property-2.0.0.tgz#6c440733668fecb2a0a25f4108fc78ba6b7aefe9"
-  integrity sha512-bPdAJBqMSjgJFhurM78PDYeMpQfwejdaVPeBBB28zsKR/v842k3S57pEI2jqF9YdlsTh/wH9W4TbHJgTHSO7ug==
+nested-property@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/nested-property/-/nested-property-2.0.2.tgz#5523123ecd41c32dcb7e5c4793ee16cf56f7695c"
+  integrity sha512-oVABBYilPx1A8QlkeZzMf1P01gQIuXIT7zTKvLiCX4vEdimvt9NpBAC9C2RGOofKQxaRMBXdXCS3s1BZZXykhQ==
 
 nice-try@^1.0.4:
   version "1.0.5"
