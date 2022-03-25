@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prod": "now --prod -e LOG_LEVEL=debug -e SESSION_SECRET=@session_secret",
-    "deploy": "now -e LOG_LEVEL=debug -e SESSION_SECRET=@session_secret"
+    "deploy": "now -e LOG_LEVEL=debug -e SESSION_SECRET=@session_secret",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -28,7 +30,8 @@
     "nested-property": "^2.0.0",
     "node-schedule": "^1.3.2",
     "pino": "^5.17.0",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -51,5 +54,6 @@
     "prettier": "^1.19.1",
     "supertest": "^4.0.2"
   },
-  "author": "Alaeddine Messadi <alaeddine.messadi@gmail.com> (https://github.com/AlaeddineMessadi)"
+  "author": "Alaeddine Messadi <alaeddine.messadi@gmail.com> (https://github.com/AlaeddineMessadi)",
+  "snyk": true
 }
