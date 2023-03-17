@@ -16,12 +16,12 @@
     "deploy": "now -e LOG_LEVEL=debug -e SESSION_SECRET=@session_secret"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.19.2",
     "cookie-parser": "^1.4.4",
     "country-code-lookup": "^0.0.18",
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-openapi-validator": "^3.17.2",
     "express-pino-logger": "^4.0.0",
     "moment": "^2.29.1",
