@@ -24,7 +24,7 @@
     "express": "^4.17.3",
     "express-openapi-validator": "^3.17.2",
     "express-pino-logger": "^4.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "nested-property": "^2.0.0",
     "node-schedule": "^1.3.2",
     "pino": "^5.17.0",
