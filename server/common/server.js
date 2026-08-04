@@ -51,6 +51,6 @@ export default class ExpressServer {
       exit(1);
     }
 
-    return app;
+    return this;
   }
 }
